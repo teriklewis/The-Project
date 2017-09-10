@@ -21,6 +21,18 @@ class HomeController extends CI_Controller {
     }
 
     public function Search() {
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data;
+            
+            $this->load->model('LoginModel');
+          //  $data['name'] = $this->LoginModel->getName($data['id']);       
+          $data['level'] = $this->LoginModel->getLevel($data['username']);
+        } else {
+            $data['level'] = 0;
+        }
+        
+        
         $search['filter'] = $this->input->post('filter');
         $search['value'] = $this->input->post('value');
 

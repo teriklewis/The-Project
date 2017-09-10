@@ -60,7 +60,6 @@ class HomeModel extends CI_Model {
     }
 
     public function Search($search) {
-
         if ($search['filter'] == "skill") {
             $this->db->select('*');
             $this->db->from('members');
@@ -69,16 +68,16 @@ class HomeModel extends CI_Model {
             $query = $this->db->get();
         } elseif ($search['filter'] == "firstname") {
             $this->db->from('members');
-            $query = $this->db->get();
             $this->db->where('firstname', $search['value']);
+            $query = $this->db->get(); 
         } elseif ($search['filter'] == "lastname") {
             $this->db->from('members');
-            $query = $this->db->get();
             $this->db->where('lastname', $search['value']);
+            $query = $this->db->get();
         } elseif ($search['filter'] == "position") {
             $this->db->from('members');
-            $query = $this->db->get();
             $this->db->where('position', $search['value']);
+            $query = $this->db->get();
         }
 
         return $query->result();
@@ -103,7 +102,7 @@ class HomeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     public function getSkill($id) {
         $this->db->select('*');
         $this->db->from('skills');
