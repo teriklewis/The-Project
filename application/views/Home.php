@@ -75,7 +75,7 @@
 
             <div id="body">
                 <img style =" margin-left: 500px;"width = "20%" src="<?php echo base_url(); ?>/theme/assets/welcome.gif" alt="welcome">
-                <?php if ($level > 0): ?><h1><marquee behavior="scroll" direction="left">Hi <?php echo $username; echo " level "; echo $level;?>.</marquee></h1><?php endif; ?>
+                <?php if ($level > 0): ?><h1><marquee behavior="scroll" direction="left">Hi <?php echo $email; echo " level "; echo $level;?>.</marquee></h1><?php endif; ?>
 
                 <h1> <a href="<?= site_url('SignupController') ?>">Sign Up</a> </h1>
                 
@@ -95,6 +95,9 @@
                 <table>
                     <caption>Members</caption>
                     <tr>
+                        <th>Church</th>
+                        <th>District</th>
+                        <th>Country</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Church Status</th> 
@@ -112,6 +115,9 @@
                     <?php foreach ($members as $m): ?>
                         <tr>
                             <!--skills - if they have skill(s) list them. -->
+                            <td><?php echo $m->church; ?></td>
+                            <td><?php echo $m->district; ?></td>
+                            <td><?php echo $m->country; ?></td>
                             <td><?php echo $m->firstname; ?></td>
                             <td><?php echo $m->lastname; ?></td>
                             <td><?php echo $m->status; ?></td>

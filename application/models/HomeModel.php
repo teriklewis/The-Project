@@ -83,11 +83,11 @@ class HomeModel extends CI_Model {
         return $query->result();
     }
 
-    public function getID($username) {
+    public function getID($email) {
         $query = $this->db->get('logininfo');
         $login = $query->result();
         foreach ($login as $l) {
-            if ($l->username == $username) {
+            if ($l->email == $email) {
                 //get the value of their level and store it in level
                 $id = $l->id;
                 return $id;

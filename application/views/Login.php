@@ -9,8 +9,8 @@
         <?php echo validation_errors(); ?> 
         <?php echo form_open('LoginController/checkLogin') ?>
         
-        <h3>Username</h3> 
-        <input class="option" type="text" name="username"/>
+        <h3>Email</h3> 
+        <input class="option" type="text" name="email"/>
 
         <h3>Password</h3> 
         <input class="option" type="password" name='password'/>

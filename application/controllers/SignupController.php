@@ -9,29 +9,29 @@ class SignupController extends CI_Controller {
     public function Signup() {
         $this->form_validation->set_rules('firstname', 'First Name', 'required');
         $this->form_validation->set_rules('lastname', 'Last Name', 'required');
-        $this->form_validation->set_rules('status', 'Church Status', 'required');
         $this->form_validation->set_rules('employment', 'Employment Status', 'required');
-        $this->form_validation->set_rules('position', 'Position in Church', 'required');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('email', 'E-mail', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('church', 'Church', 'required');
+        $this->form_validation->set_rules('district', 'District', 'required');
+        $this->form_validation->set_rules('country', 'Country', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('Signup');
         } else {
 
             //member 
+            $member['church'] = $this->input->post('church');
+            $member['district'] = $this->input->post('district');
+            $member['country'] = $this->input->post('country');
             $member['firstname'] = $this->input->post('firstname');
             $member['lastname'] = $this->input->post('lastname');
-            $member['status'] = $this->input->post('status');
             
             if ($this->input->post('mail') != NULL) {
                 $member['mail'] = $this->input->post('mail');
             }
             
-            if ($this->input->post('email') != NULL) {
-                $member['email'] = $this->input->post('email');
-            }
             
             if ($this->input->post('homeno') != NULL) {
                 $member['homeno'] = $this->input->post('homeno');
@@ -42,9 +42,8 @@ class SignupController extends CI_Controller {
             }
             
             $member['employment'] = $this->input->post('employment');
-            $member['position'] = $this->input->post('position');
             $member['dob'] = $this->input->post('dob');
-            
+            $member['email'] = $this->input->post('email');
        
             $this->load->model('HomeModel'); 
             $skill['id'] = $this->HomeModel->addMember($member);
@@ -64,8 +63,8 @@ class SignupController extends CI_Controller {
                 $this->HomeModel->addSkill($skill);
             }
             
-            $login['username'] = $this->input->post('username');
-            $login['password'] = $this->input->post('password');
+            $login['email'] = $this->input->post('email');
+            $login['password'] = sha1($this->input->post('password'));
             $login['id'] = $skill['id'];
             
             $this->HomeModel->addUser($login);

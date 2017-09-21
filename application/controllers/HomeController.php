@@ -6,11 +6,11 @@ class HomeController extends CI_Controller {
         
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-            $data['username'] = $session_data;
+            $data['email'] = $session_data;
             
             $this->load->model('LoginModel');
           //  $data['name'] = $this->LoginModel->getName($data['id']);       
-          $data['level'] = $this->LoginModel->getLevel($data['username']);
+          $data['level'] = $this->LoginModel->getLevel($data['email']);
         } else {
             $data['level'] = 0;
         }
@@ -23,11 +23,11 @@ class HomeController extends CI_Controller {
     public function Search() {
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-            $data['username'] = $session_data;
+            $data['email'] = $session_data;
             
             $this->load->model('LoginModel');
           //  $data['name'] = $this->LoginModel->getName($data['id']);       
-          $data['level'] = $this->LoginModel->getLevel($data['username']);
+          $data['level'] = $this->LoginModel->getLevel($data['email']);
         } else {
             $data['level'] = 0;
         }
