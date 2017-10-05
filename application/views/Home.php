@@ -77,7 +77,7 @@
                 <img style =" margin-left: 500px;"width = "20%" src="<?php echo base_url(); ?>/theme/assets/welcome.gif" alt="welcome">
                 <?php if ($level > 0): ?><h1><marquee behavior="scroll" direction="left">Hi <?php echo $email; echo " level "; echo $level;?>.</marquee></h1><?php endif; ?>
 
-                <h1> <a href="<?= site_url('SignupController') ?>">Sign Up</a> </h1>
+                <?php if ($level == 0): ?><h1> <a href="<?= site_url('SignupController') ?>">Sign Up</a> </h1><?php endif; ?>
                 
                 
                 <h1> Search by: <?php echo form_open('HomeController/Search') ?>
