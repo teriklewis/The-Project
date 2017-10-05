@@ -7,6 +7,7 @@
 
     <body>
         <h1>Sign Up</h1>
+        <h1><a href="<?= site_url('HomeController') ?>">Home</a> </h1>
         <h4>Fields with * are required</h4>
         
         <?php echo validation_errors(); ?> 
