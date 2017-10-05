@@ -67,7 +67,7 @@
 
         <div id="container">
             <h1><a href="<?= site_url('HomeController') ?>">Home</a>
-                <a href="<?= site_url('ProfileController') ?>">Profile</a>
+                <?php if ($level > 0): ?><a href="<?= site_url('ProfileController') ?>">Profile</a><?php endif; ?>
                 <a href="<?= site_url('HomeController/About') ?>">About</a>
                 <?php if ($level == 0): ?><a href="<?= site_url('LoginController') ?>">Login</a> <?php endif; ?>
                 <?php if ($level > 0): ?><a href="<?= site_url('LoginController/Logout') ?>">Logout</a> <?php endif; ?>
