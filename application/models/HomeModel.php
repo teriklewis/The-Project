@@ -9,6 +9,37 @@ class HomeModel extends CI_Model {
         return $query->result();
     }
 
+    public function getMember($id) {
+        $this->db->select('*');
+        $this->db->from('members');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function deleteMember($id) {
+        $this->db->where('id', $id);
+        $member = $this->db->count_all_results('members');
+        if($member == 0) {
+            echo "Id does not exist.";
+        } else {
+            $this->db->where('id', $id);
+            $this->db->from('members');
+            $this->db->delete();
+            
+            $this->db->where('id', $id);
+            $this->db->from('skills');
+            $this->db->delete();
+
+            $this->db->where('id', $id);
+            $this->db->from('logininfo');
+            $this->db->delete();
+            echo " Member Deleted";
+        }
+        
+    }
+
     public function getSkills() {
         $query = $this->db->get('skills');
         return $query->result();
@@ -35,7 +66,7 @@ class HomeModel extends CI_Model {
         return $member['id'];
     }
 
-    public function addSkill($skill) {
+    public function addSkill($skill) { //check for duplicate skills, they should have the same id 
         $skill['skillid'] = 1;
         $this->db->select('skillid');
         $this->db->from('skills');
@@ -111,4 +142,15 @@ class HomeModel extends CI_Model {
         return $query->result();
     }
 
+    public function updateMember($member, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('members', $member);
+        echo "Member Updated";
+    }
+    
+    public function updateLogin($login, $id) {
+        $this->db->where('id', $id);  
+        $this->db->update('logininfo', $login);
+        echo "Login info Updated";
+    }
 }
